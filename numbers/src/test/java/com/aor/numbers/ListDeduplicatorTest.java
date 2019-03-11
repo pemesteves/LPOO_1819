@@ -4,6 +4,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import static org.junit.Assert.*;
@@ -36,7 +37,49 @@ public class ListDeduplicatorTest {
 
     @Test
     public void deduplicate() {
-        ListDeduplicator deduplicator = new ListDeduplicator(list);
+        class StubListSorter implements IListSorter{
+            @Override
+            public List<Integer> sort(){
+                List<Integer> sorted = new ArrayList();
+                sorted.add(1);
+                sorted.add(2);
+                sorted.add(3);
+                sorted.add(4);
+                sorted.add(5);
+                sorted.add(6);
+                sorted.add(7);
+                return sorted;
+            }
+        }
+        ListDeduplicator deduplicator = new ListDeduplicator(list, new StubListSorter());
+        List<Integer> distinct = deduplicator.deduplicate();
+
+        assertEquals(expected, distinct);
+    }
+
+    @Test
+    public void deduplicate_with_equals(){
+        class StubListSorter implements IListSorter{
+            @Override
+            public List<Integer> sort(){
+                List<Integer> sorted = new ArrayList();
+                sorted.add(1);
+                sorted.add(2);
+                sorted.add(4);
+                return sorted;
+            }
+        }
+        List<Integer> list = new ArrayList<>();
+        list.add(1);
+        list.add(2);
+        list.add(4);
+        list.add(2);
+        List<Integer> expected = new ArrayList<>();
+        expected.add(1);
+        expected.add(2);
+        expected.add(4);
+
+        ListDeduplicator deduplicator = new ListDeduplicator(list, new StubListSorter());
         List<Integer> distinct = deduplicator.deduplicate();
 
         assertEquals(expected, distinct);
