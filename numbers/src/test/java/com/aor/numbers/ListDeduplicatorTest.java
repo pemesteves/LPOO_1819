@@ -2,6 +2,7 @@ package com.aor.numbers;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.Mockito;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -37,21 +38,20 @@ public class ListDeduplicatorTest {
 
     @Test
     public void deduplicate() {
-        class StubListSorter implements IListSorter{
-            @Override
-            public List<Integer> sort(){
-                List<Integer> sorted = new ArrayList();
-                sorted.add(1);
-                sorted.add(2);
-                sorted.add(3);
-                sorted.add(4);
-                sorted.add(5);
-                sorted.add(6);
-                sorted.add(7);
-                return sorted;
-            }
-        }
-        ListDeduplicator deduplicator = new ListDeduplicator(list, new StubListSorter());
+        IListSorter sorter = Mockito.mock(IListSorter.class);
+
+        List<Integer> sorted = new ArrayList();
+        sorted.add(1);
+        sorted.add(2);
+        sorted.add(3);
+        sorted.add(4);
+        sorted.add(5);
+        sorted.add(6);
+        sorted.add(7);
+
+        Mockito.when(sorter.sort()).thenReturn(sorted);
+
+        ListDeduplicator deduplicator = new ListDeduplicator(list, sorter);
         List<Integer> distinct = deduplicator.deduplicate();
 
         assertEquals(expected, distinct);
@@ -59,16 +59,16 @@ public class ListDeduplicatorTest {
 
     @Test
     public void deduplicate_with_equals(){
-        class StubListSorter implements IListSorter{
-            @Override
-            public List<Integer> sort(){
-                List<Integer> sorted = new ArrayList();
-                sorted.add(1);
-                sorted.add(2);
-                sorted.add(4);
-                return sorted;
-            }
-        }
+        IListSorter sorter = Mockito.mock(IListSorter.class);
+
+        List<Integer> sorted = new ArrayList();
+        sorted.add(1);
+        sorted.add(2);
+        sorted.add(4);
+
+        Mockito.when(sorter.sort()).thenReturn(sorted);
+
+
         List<Integer> list = new ArrayList<>();
         list.add(1);
         list.add(2);
@@ -79,7 +79,7 @@ public class ListDeduplicatorTest {
         expected.add(2);
         expected.add(4);
 
-        ListDeduplicator deduplicator = new ListDeduplicator(list, new StubListSorter());
+        ListDeduplicator deduplicator = new ListDeduplicator(list, sorter);
         List<Integer> distinct = deduplicator.deduplicate();
 
         assertEquals(expected, distinct);
