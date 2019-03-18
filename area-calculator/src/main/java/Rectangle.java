@@ -1,30 +1,35 @@
-public class Rectangle implements Shape {
-    private float width;
-    private float height;
+public class Rectangle implements AreaShape {
+    private double width;
+    private double height;
 
-    public Rectangle(float width, float height) {
+    public Rectangle(double width, double height) {
         this.width = width;
         this.height = height;
     }
 
-    public float getWidth() {
+    public double getWidth() {
         return width;
     }
 
-    public void setWidth(float width) {
+    public void setWidth(double width) {
         this.width = width;
     }
 
-    public float getHeight() {
+    public double getHeight() {
         return height;
     }
 
-    public void setHeight(float height) {
+    public void setHeight(double height) {
         this.height = height;
     }
 
     @Override
     public double getArea() {
         return width*height;
+    }
+
+    @Override
+    public void draw() {
+        System.out.println("Rectangle");
     }
 }

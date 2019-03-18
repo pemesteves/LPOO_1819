@@ -1,30 +1,35 @@
-public class Ellipse implements Shape {
-    private float x_radius;
-    private float y_radius;
+public class Ellipse implements AreaShape {
+    private double x_radius;
+    private double y_radius;
 
     Ellipse(float x_radius, float y_radius){
         this.x_radius = x_radius;
         this.y_radius = y_radius;
     }
 
-    public float getX_radius() {
+    public double getX_radius() {
         return x_radius;
     }
 
-    public void setX_radius(float x_radius) {
+    public void setX_radius(double x_radius) {
         this.x_radius = x_radius;
     }
 
-    public float getY_radius() {
+    public double getY_radius() {
         return y_radius;
     }
 
-    public void setY_radius(float y_radius) {
+    public void setY_radius(double y_radius) {
         this.y_radius = y_radius;
     }
 
     @Override
     public double getArea() {
         return Math.PI*x_radius*y_radius;
+    }
+
+    @Override
+    public void draw() {
+        System.out.println("Ellipse");
     }
 }

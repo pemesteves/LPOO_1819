@@ -1,20 +1,25 @@
-public class Square implements Shape{
-    private float side;
+public class Square implements AreaShape{
+    private double side;
 
-    Square(float side){
+    Square(double side){
         this.side = side;
     }
 
-    public float getSide() {
+    public double getSide() {
         return side;
     }
 
-    public void setSide(float side) {
+    public void setSide(double side) {
         this.side = side;
     }
 
     @Override
     public double getArea() {
         return side*side;
+    }
+
+    @Override
+    public void draw() {
+        System.out.println("Square");
     }
 }
