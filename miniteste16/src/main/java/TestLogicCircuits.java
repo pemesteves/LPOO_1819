@@ -135,7 +135,7 @@ public class TestLogicCircuits {
     }
 
     @Test
-    public void testValues() throws Exception {/*
+    public void testValues() throws Exception {
         LogicVariable x1 = new LogicVariable("x1", false);
         LogicVariable x2 = new LogicVariable("x2", true);
         LogicVariable x3 = new LogicVariable("x3", true);
@@ -155,18 +155,18 @@ public class TestLogicCircuits {
         assertEquals(false, y1.getValue());
 
         x3.setValue(false);
-        assertEquals(true, y1.getValue());*/
+        assertEquals(true, y1.getValue());
     }
 
     // Circular dependencies are not allowed
     @Test(expected = CycleException.class)
-    public void testCycles() throws Exception {/*
+    public void testCycles() throws Exception {
         LogicVariable w1 = new LogicVariable("w1");
         LogicVariable w2 = new LogicVariable("w2");
         LogicVariable w3 = new LogicVariable("w3");
 
         LogicGate p1 = new GateAnd(w3, w2, w1);
-        LogicGate p2 = new GateNot(w2, w3);*/
+        LogicGate p2 = new GateNot(w2, w3);
     }
 
     @Test

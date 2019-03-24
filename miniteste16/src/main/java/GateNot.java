@@ -3,7 +3,7 @@ public class GateNot extends LogicGate {
     private LogicVariable output;
     private LogicVariable input;
 
-    GateNot(LogicVariable output, LogicVariable input) throws ColisionException {
+    GateNot(LogicVariable output, LogicVariable input) throws ColisionException, CycleException {
         this.output = output;
         if(this.output.getCalculatedBy() != null)
             throw new ColisionException();
@@ -11,6 +11,13 @@ public class GateNot extends LogicGate {
         this.output.setLogicGate(this);
         this.output.setValue(!input.getValue());
         this.input = input;
+        this.input.addLogicGate(this);
+
+        LogicVariable lv[] = this.input.getCalculatedBy().getInputs();
+        for(int i = 0; i < lv.length; i++){
+            if(this.output.equals(lv[i]))
+                throw new CycleException();
+        }
     }
 
     @Override

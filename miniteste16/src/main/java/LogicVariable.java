@@ -1,8 +1,12 @@
+import java.util.ArrayList;
+import java.util.List;
+
 public class LogicVariable {
 
     private String name;
     private boolean value;
     private LogicGate logicGate;
+    private List<LogicGate> inputLogicGates;
 
     LogicVariable(String name){
         this(name, false);
@@ -12,6 +16,7 @@ public class LogicVariable {
         this.name = name;
         this.value = value;
         this.logicGate = null;
+        inputLogicGates = new ArrayList<>();
     }
 
     public String getName() {
@@ -24,8 +29,9 @@ public class LogicVariable {
 
     public void setValue(boolean value) {
         this.value = value;
-        if(this.logicGate != null)
-            this.logicGate.setValue(this);
+        for(LogicGate lg : inputLogicGates){
+            lg.setValue(this);
+        }
     }
 
     @Override
@@ -53,5 +59,17 @@ public class LogicVariable {
             return this.name;
 
         return this.logicGate.getFormula();
+    }
+
+    public void addLogicGate(LogicGate logicGate){
+        this.inputLogicGates.add(logicGate);
+    }
+
+    public boolean hasGate(LogicGate logicGate){
+        for(LogicGate lg : inputLogicGates){
+            if(lg.equals(logicGate))
+                return true;
+        }
+        return false;
     }
 }

@@ -2,7 +2,7 @@ public class GateAnd extends LogicGate{
     private LogicVariable output;
     private LogicVariable input[];
 
-    GateAnd(LogicVariable output, LogicVariable input1, LogicVariable input2) throws ColisionException {
+    GateAnd(LogicVariable output, LogicVariable input1, LogicVariable input2) throws ColisionException, CycleException {
         this.output = output;
 
         if(this.output.getCalculatedBy() != null)
@@ -12,7 +12,9 @@ public class GateAnd extends LogicGate{
         this.output.setValue(input1.getValue() && input2.getValue());
         input = new LogicVariable[2];
         this.input[0] = input1;
+        this.input[0].addLogicGate(this);
         this.input[1] = input2;
+        this.input[1].addLogicGate(this);
     }
 
     @Override
