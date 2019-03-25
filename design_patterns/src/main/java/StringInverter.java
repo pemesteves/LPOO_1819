@@ -12,4 +12,9 @@ public class StringInverter implements StringTransformer {
         text.reverse();
         this.drink.setText(text.toString());
     }
+
+    @Override
+    public void undo() {
+        execute();
+    }
 }

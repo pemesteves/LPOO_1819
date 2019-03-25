@@ -20,4 +20,9 @@ public class StringCaseChanger implements StringTransformer {
         }
         drink.setText(newText);
     }
+
+    @Override
+    public void undo() {
+        execute();
+    }
 }
