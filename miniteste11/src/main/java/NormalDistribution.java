@@ -54,7 +54,9 @@ public class NormalDistribution extends ProbabilityDistribution{
 
         ((Function) function).setParameters(stddev, mean);
 
-        return SimpsonMethod.calcIntegral(function, a, b, 0.0005);
+        double value = SimpsonMethod.calcIntegral(function, a, b, 0.0005);
+        value = (double)Math.round(value*100000)/100000;
+        return value;
     }
 
     @Override
@@ -77,7 +79,9 @@ public class NormalDistribution extends ProbabilityDistribution{
 
         ((Function) function).setParameters(stddev, mean);
 
-        return SimpsonMethod.calcIntegral(function, -10000, x, 0.0005);
+        double value = SimpsonMethod.calcIntegral(function, -10000, x, 0.0005);
+        value = (double)Math.round(value*100000)/100000;
+        return value;
     }
 
     @Override
