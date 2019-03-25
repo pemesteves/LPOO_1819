@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="PatternsTests" tests="18" skipped="0" failures="0" errors="0" timestamp="2019-03-25T15:53:56" hostname="pedro-N552VX" time="0.299">
+  <properties/>
+  <testcase name="happyHour" classname="PatternsTests" time="0.001"/>
+  <testcase name="stringReplacer" classname="PatternsTests" time="0.0"/>
+  <testcase name="impatientStrategy" classname="PatternsTests" time="0.001"/>
+  <testcase name="transformUndo" classname="PatternsTests" time="0.0"/>
+  <testcase name="stringDrink" classname="PatternsTests" time="0.0"/>
+  <testcase name="removeObserver" classname="PatternsTests" time="0.284"/>
+  <testcase name="smartStrategyStartClosed" classname="PatternsTests" time="0.0"/>
+  <testcase name="stringInverter" classname="PatternsTests" time="0.0"/>
+  <testcase name="smartStrategyStartOpened" classname="PatternsTests" time="0.0"/>
+  <testcase name="addObserver" classname="PatternsTests" time="0.006"/>
+  <testcase name="orderStringRecipe" classname="PatternsTests" time="0.0"/>
+  <testcase name="stringRecipe" classname="PatternsTests" time="0.0"/>
+  <testcase name="ferengiStartClosed" classname="PatternsTests" time="0.001"/>
+  <testcase name="tranformerComposite" classname="PatternsTests" time="0.0"/>
+  <testcase name="tranformerGroup" classname="PatternsTests" time="0.0"/>
+  <testcase name="ferengiAlreadyOpened" classname="PatternsTests" time="0.001"/>
+  <testcase name="romulan" classname="PatternsTests" time="0.0"/>
+  <testcase name="stringCaseChanger" classname="PatternsTests" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
