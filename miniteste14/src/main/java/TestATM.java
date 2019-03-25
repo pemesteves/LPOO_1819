@@ -59,6 +59,6 @@ public class TestATM {
 	@Test
 	public void testSessionEquals() {
 		Session s = new Session(new ATM(987, "Porto", "CGD"));
-		assertEquals(true, s.equals(new Session(new ATM(987, "Porto", "CGD"))));	
+		assertEquals(true, s.equals(new Session(new ATM(987, "Porto", "CGD"))));
 	}
 }
