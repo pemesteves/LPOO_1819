@@ -24,17 +24,17 @@ public class Bar {
         return this.happyHour;
     }
 
-    void addObserver(BarObserver observer){
+    public void addObserver(BarObserver observer){
         observers.add(observer);
     }
 
-    void removeObserver(BarObserver observer){
+    public void removeObserver(BarObserver observer){
         observers.remove(observer);
     }
 
-    void notifyObservers(){
+    public void notifyObservers(){
         for(BarObserver observer : observers){
-            if(isHappyHour())
+            if(this.happyHour)
                 observer.happyHourStarted(this);
             else
                 observer.happyHourEnded(this);
