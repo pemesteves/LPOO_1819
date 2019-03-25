@@ -37,15 +37,47 @@ public class NormalDistribution extends ProbabilityDistribution{
 
     @Override
     public double calcRangeProbability(int a, int b) {
-        return 1.0-(probabilityDensityFunction(a)+probabilityDensityFunction(b));
+        Function function = new Function() {
+            private double stddev;
+            private double mean;
+
+            public void setParameters(double stddev, double mean){
+                this.stddev = stddev;
+                this.mean = mean;
+            }
+
+            @Override
+            public double evaluate(double x) {
+                return Math.exp(-Math.pow(x-mean, 2)/(2*stddev*stddev))/(Math.sqrt(2*Math.PI*stddev*stddev));
+            }
+        };
+
+        ((Function) function).setParameters(stddev, mean);
+
+        return SimpsonMethod.calcIntegral(function, a, b, 0.0005);
     }
 
     @Override
     public double calcLeftProbability(double x) {
-        if(x < 0)
-            return probabilityDensityFunction(x);
 
-        return 1.0 - probabilityDensityFunction(x);
+        Function function = new Function() {
+            private double stddev;
+            private double mean;
+
+            public void setParameters(double stddev, double mean){
+                this.stddev = stddev;
+                this.mean = mean;
+            }
+
+            @Override
+            public double evaluate(double x) {
+                return Math.exp(-Math.pow(x-mean, 2)/(2*stddev*stddev))/(Math.sqrt(2*Math.PI*stddev*stddev));
+            }
+        };
+
+        ((Function) function).setParameters(stddev, mean);
+
+        return SimpsonMethod.calcIntegral(function, -10000, x, 0.0005);
     }
 
     @Override

@@ -18,4 +18,5 @@ public interface Function {
 	 */
 	public abstract double evaluate(double x);
 
+	void setParameters(double stddev, double mean);
 }
