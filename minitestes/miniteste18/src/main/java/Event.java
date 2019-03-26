@@ -73,6 +73,9 @@ public class Event {
         if(obj == null)
             return false;
 
+        if(obj.getClass() != Event.class)
+            return false;
+
         Event e = (Event)obj;
 
         return this.title.equals(e.getTitle()) && this.date.equals(e.getDate()) && this.description.equals(this.getDescription());

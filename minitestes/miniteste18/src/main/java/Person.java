@@ -1,4 +1,6 @@
-public abstract class Person implements Comparable, User{
+import java.util.Objects;
+
+public abstract class Person implements Comparable, User, Cloneable{
     protected int age;
     protected String name;
 
@@ -36,5 +38,10 @@ public abstract class Person implements Comparable, User{
     @Override
     public String getUsername() {
         return name+age;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name);
     }
 }
