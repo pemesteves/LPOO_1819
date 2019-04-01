@@ -15,8 +15,8 @@ public class File extends Node {
         this.name = name;
         this.size = size;
 
-        if(this.parent != null && this.parent.getClass() == Folder.class)
-            ((Folder)parent).add(this);
+        if(this.parent != null)
+            this.parent.add(this);
     }
 
     @Override
@@ -51,5 +51,10 @@ public class File extends Node {
         File f = (File)obj;
 
         return this.name.equals(f.getName()) && this.size == f.getSize();
+    }
+
+    @Override
+    public String toString() {
+        return "("+this.name+","+this.size+")";
     }
 }

@@ -84,14 +84,15 @@ public class Folder extends Node{
 
     public Folder clone(Folder parent, String name) throws DuplicateNameException {
         Folder f = new Folder(parent, name);
+
         for(Node node : child){
             Node n;
+
             if(node.getClass() == Folder.class){
-                n = new Folder(parent, node.getName());
-                ((Folder) n).clone((Folder) n.getParent(), n.getName());
+                n = ((Folder) node).clone((Folder) node, node.getName());
             }
             else{
-                n = new File(parent, node.getName(), node.getSize());
+                n = new File(f, node.getName(), node.getSize());
             }
 
             f.add(n);
@@ -124,5 +125,15 @@ public class Folder extends Node{
         }
 
         return true;
+    }
+
+    @Override
+    public String toString() {
+        String s = "("+this.name+",";
+        for(Node node : child){
+            s += child.toString();
+        }
+
+        return s+")";
     }
 }
